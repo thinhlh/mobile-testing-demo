@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -84,14 +85,29 @@ class HomePage extends PageStateless<HomeProvider> {
                 ],
               ),
               AppSizes.largeHeightDimens.verticalSpace,
-              ElevatedButton(
-                onPressed: () => context.setLocale(
-                  context.locale.languageCode ==
-                          AppLanguages.supportedLocales.first.languageCode
-                      ? AppLanguages.supportedLocales.last
-                      : AppLanguages.supportedLocales.first,
-                ),
-                child: Text(LocaleKeys.home_change_locale.tr()),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () => context.setLocale(
+                        context.locale.languageCode ==
+                                AppLanguages.supportedLocales.first.languageCode
+                            ? AppLanguages.supportedLocales.last
+                            : AppLanguages.supportedLocales.first,
+                      ),
+                      child: Text(LocaleKeys.home_change_locale.tr()),
+                    ),
+                  ),
+                  AppSizes.mediumWidthDimens.horizontalSpace,
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: () => FirebaseCrashlytics.instance.crash(),
+                      child: Text(
+                        LocaleKeys.home_crash_app.tr(),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

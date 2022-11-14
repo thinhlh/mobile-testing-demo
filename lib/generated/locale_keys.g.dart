@@ -14,6 +14,10 @@ abstract class  LocaleKeys {
   static const home_call_api_success = 'home.call_api_success';
   static const home_call_api_error = 'home.call_api_error';
   static const home_change_locale = 'home.change_locale';
+  static const home_crash_app = 'home.crash_app';
   static const home = 'home';
+  static const logged_in_title = 'logged_in.title';
+  static const logged_in_logout = 'logged_in.logout';
+  static const logged_in = 'logged_in';
 
 }

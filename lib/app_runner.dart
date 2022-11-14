@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tfc/config/app_languages.dart';
@@ -14,13 +17,18 @@ class AppRunner {
   static final AppRunner instance = AppRunner._internal();
 
   Future<void> runApplication() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Future.wait([
-      _initializeDependencies(),
-      _initServices(),
-      _appConfigurations(),
-    ]);
-    runApp(const App());
+    runZonedGuarded(
+      () async {
+        WidgetsFlutterBinding.ensureInitialized();
+        await Future.wait([
+          _initializeDependencies(),
+          _initServices(),
+          _appConfigurations(),
+        ]);
+        runApp(const App());
+      },
+      (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack),
+    );
   }
 
   /// Initalize application internal dependencies
@@ -31,6 +39,7 @@ class AppRunner {
   /// Initalize external application service
   Future<void> _initServices() async {
     await Firebase.initializeApp();
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
     await AppPreferences.instance.init();
     await EasyLocalization.ensureInitialized();
     // await ScreenUtil.ensureScreenSize();

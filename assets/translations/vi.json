@@ -1,19 +1,24 @@
 {
-    "general":"Thinh Flutter Template VN",
-    "common":{
-        "default_error":"Lỗi không xác định",
-        "dialog":{
-            "success_title":"Thành công!",
-            "error_title":"Ôi không!",
-            "info_title":"Thông tin!",
-            "success_action":"Tiếp tục",
-            "error_action":"Thử Lại",
-            "info_action":"Okay"
-        }
-    },
-    "home":{
-        "call_api_success":"Đăng Nhập Thành Công",
-        "call_api_error":"Đăng Nhập Thất Bại",
-        "change_locale":"Đổi Locale"
+  "general": "Thinh Flutter Template",
+  "common": {
+    "default_error": "Lỗi không xác định",
+    "dialog": {
+      "success_title": "Thành công!",
+      "error_title": "Ôi không!",
+      "info_title": "Thông tin!",
+      "success_action": "Tiếp tục",
+      "error_action": "Thử Lại",
+      "info_action": "Okay"
     }
+  },
+  "home": {
+    "call_api_success": "Đăng Nhập Thành Công",
+    "call_api_error": "Đăng Nhập Thất Bại",
+    "change_locale": "Đổi Locale",
+    "crash_app": "Crash App"
+  },
+  "logged_in": {
+    "title": "Đã đăng nhập",
+    "logout": "Đăng xuất"
+  }
 }

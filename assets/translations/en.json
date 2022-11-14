@@ -1,19 +1,24 @@
 {
-    "general":"Thinh Flutter Template",
-    "common":{
-        "default_error":"Unknown Error",
-        "dialog":{
-            "success_title":"Success!",
-            "error_title":"Oh Snap!",
-            "info_title":"Info!",
-            "success_action":"Continue",
-            "error_action":"Try Again",
-            "info_action":"Okay"
-        }
-    },
-    "home":{
-        "call_api_success":"Login Success",
-        "call_api_error":"Login Error",
-        "change_locale":"Change Locale"
+  "general": "Thinh Flutter Template",
+  "common": {
+    "default_error": "Unknown Error",
+    "dialog": {
+      "success_title": "Success!",
+      "error_title": "Oh Snap!",
+      "info_title": "Info!",
+      "success_action": "Continue",
+      "error_action": "Try Again",
+      "info_action": "Okay"
     }
+  },
+  "home": {
+    "call_api_success": "Login Success",
+    "call_api_error": "Login Error",
+    "change_locale": "Change Locale",
+    "crash_app": "Crash App"
+  },
+  "logged_in": {
+    "title": "Logged In",
+    "logout": "Logout"
+  }
 }

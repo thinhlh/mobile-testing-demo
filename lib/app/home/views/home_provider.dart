@@ -15,7 +15,6 @@ class HomeProvider extends BaseProvider {
 
     title = response.data ?? "";
     notifyListeners();
-
     return response;
   }
 

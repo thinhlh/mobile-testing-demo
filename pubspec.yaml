@@ -22,9 +22,6 @@ dependencies:
   # Localization
   easy_localization: ^3.0.0
 
-  # Testing
-  mockito: ^5.1.0
-
   # Datasource
   dio: ^4.0.6
   shared_preferences: ^2.0.15
@@ -38,9 +35,12 @@ dependencies:
 
   # Google service
   firebase_core: ^2.2.0
+  firebase_crashlytics: ^3.0.5
 
 dev_dependencies:
   flutter_lints: ^2.0.1
+  mockito: ^5.3.2
+  build_runner: ^2.3.2
   flutter_test:
     sdk: flutter
 
