@@ -1,0 +1,4 @@
+enum ApiErrorCode {
+  unknown,
+  unauthorized;
+}
