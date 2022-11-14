@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tfc/config/app_languages.dart';
@@ -29,6 +30,7 @@ class AppRunner {
 
   /// Initalize external application service
   Future<void> _initServices() async {
+    await Firebase.initializeApp();
     await AppPreferences.instance.init();
     await EasyLocalization.ensureInitialized();
     // await ScreenUtil.ensureScreenSize();
