@@ -19,43 +19,41 @@ void main() {
     homeProvider = HomeProvider(mockHomeService);
   });
 
-  group('Login', () {
-    test('Should forward the call to home service once', () async {
-      when(mockHomeService.checkConnection()).thenAnswer(
-        (_) async => BaseResponse.success(
-          "Success",
-        ),
-      );
+  test('Should forward the call to home service once', () async {
+    when(mockHomeService.checkConnection()).thenAnswer(
+      (_) async => BaseResponse.success(
+        "Success",
+      ),
+    );
 
-      final result = await homeProvider.checkConnection();
+    final result = await homeProvider.checkConnection();
 
-      verify(mockHomeService.checkConnection()).called(1);
-      verifyNever(mockHomeService.checkConnectionFailed());
-      verifyNoMoreInteractions(mockHomeService);
-    });
+    verify(mockHomeService.checkConnection()).called(1);
+    verifyNever(mockHomeService.checkConnectionFailed());
+    verifyNoMoreInteractions(mockHomeService);
+  });
 
-    test('Should return success when service calling is success', () async {
-      when(mockHomeService.checkConnection()).thenAnswer(
-        (_) async => BaseResponse.success(
-          "Success",
-        ),
-      );
+  test('Should return success when service calling is success', () async {
+    when(mockHomeService.checkConnection()).thenAnswer(
+      (_) async => BaseResponse.success(
+        "Success",
+      ),
+    );
 
-      final result = await homeProvider.checkConnection();
+    final result = await homeProvider.checkConnection();
 
-      expect(result.success, true);
-    });
+    expect(result.success, true);
+  });
 
-    test('Should return success when service calling is error', () async {
-      when(mockHomeService.checkConnectionFailed()).thenAnswer(
-        (_) async => BaseResponse.error(
-          "Error",
-        ),
-      );
+  test('Should return success when service calling is error', () async {
+    when(mockHomeService.checkConnectionFailed()).thenAnswer(
+      (_) async => BaseResponse.error(
+        "Error",
+      ),
+    );
 
-      final result = await homeProvider.checkConnectionFailed();
+    final result = await homeProvider.checkConnectionFailed();
 
-      expect(result.success, false);
-    });
+    expect(result.success, false);
   });
 }
