@@ -11,7 +11,6 @@
 5. [Dependencies](#application-dependencies)
 6. [License](#license)
 
-
 ## Installation
 
 1. Clone the project (consider using template).
@@ -30,6 +29,7 @@ This directory contains all the base classes with essential functionality that c
 
 **3. Config**
 This folder acts as a resource of the project, containing:
+
 1. Routing
 2. Colors
 3. Sizes
@@ -46,6 +46,7 @@ This folder acts as a resource of the project, containing:
 **6. Services**
 
 Contains all the service of the application including but not limited to:
+
 1. Dialog service
 2. Shared preference
 3. REST API service
@@ -67,19 +68,19 @@ This template follow the **Test Driven Development** process and **MVP architect
 
 > All the feature of the application are placed in **app** folder. Each feature is spliited into 3 different folder named domain, data, presentation with different usages.
 
-1.  Domain - *where business layer placed*
+1.  Domain - _where business layer placed_
     Containing 2 child directories named **entities and services:**
 
         - Entities: The core entity of the feature, used to display to view.
         - Services: A contract to communicate between domain layer and data layer.
 
-2.  Data - *datasources of the feature*
+2.  Data - _datasources of the feature_
     Containing 2 child directories named **services, models and dto (optional):**
 
         - Services: The implementation of service specified in the domain folder.
         - Models: A model that is returned from application's boundary such as from API, local storage
 
-3.  Presentation - *views of the features*
+3.  Presentation - _views of the features_
     Containing 3 child directories named **pages, business-logic-handler, widgets:**
 
         - pages: Contains pages of the features
@@ -91,23 +92,27 @@ This template follow the **Test Driven Development** process and **MVP architect
     This file is usally placed at the root of the feature folder and instantiate at the [dependency_initializer file](./lib/utils/dependency_initializer.dart). Etc: [home_injection_container.dart](./lib/app/home/home_injection_container.dart) -->
 
 ### Dealing with API / Data handler
+
 > Usually, while using Provider, we often faces with the situation when need to navigating before/after an api is executed (etc: show loading, show dialog...). By default, provider package only support UI reload when state changes, NOT navigating when a new state is exposed (similar to BlocListener). Hence using `apiCallSafety` will avoid this issue.
 
 1. Wrap the api calling function from UI with `apiCallSafety` method (inside [ApiError](./lib/services/rest_api/api/api_error.dart) mixin)
 2. Handling call flow by submitting the implementation to these callbacks:
-    1. `Future<void> Function()? onStart`
-        Called before executing API.
 
-    2. `Future<void> Function()? onCompleted`
-        Called right after executing API completed.
-    3. `Future<void> Function(T? res)? onSuccess`
-        Called after `onCompleted` if success.
-    4. `Future<void> Function(dynamic error)? onError` Called after `onCompleted` if error.
-    
-    5. `Future<void> Function()? onFinally` Called finally where success of failed.
-    
-    6. `Future<bool> Function()? unauthorized` Called when API return with 401 - Unauthorized. Return `true` if want to forward to *app auth failed handler*, `false` will ignore.
+   1. `Future<void> Function()? onStart`
+      Called before executing API.
+
+   2. `Future<void> Function()? onCompleted`
+      Called right after executing API completed.
+   3. `Future<void> Function(T? res)? onSuccess`
+      Called after `onCompleted` if success.
+   4. `Future<void> Function(dynamic error)? onError` Called after `onCompleted` if error.
+
+   5. `Future<void> Function()? onFinally` Called finally where success of failed.
+
+   6. `Future<bool> Function()? unauthorized` Called when API return with 401 - Unauthorized. Return `true` if want to forward to _app auth failed handler_, `false` will ignore.
+
 3. Implementing API error handler by status if needed.
+
 ## Application configuration
 
 > Depends on the application specification, you will need to modify several values and configuration in order to match the requirements.
@@ -124,7 +129,9 @@ AppConfig(env: Env.dev());
 - To add more environment, just add it to env folder follow the structure and update [env_type.dart](./lib/config/env/env_type.dart) with specified a new `main_env.dart` file
 
 ### Running application from environment
+
 To run app in dev environment consider:
+
 ```
 flutter run --release -t lib/main_prod.dart
 ```
@@ -136,7 +143,7 @@ flutter run --release -t lib/main_prod.dart
 2. Generate keys using this command
 
 ```
-flutter pub run easy_localization:generate -S assets/translations -o locale_keys.g.dart -f keys 
+flutter pub run easy_localization:generate -S assets/translations -o locale_keys.g.dart -f keys
 ```
 
 3. Transform from keys to string resource
@@ -154,6 +161,12 @@ To add named route to the application, modify the `rooutes.dart` file inside the
 ### Base API response model.
 
 The application RestAPI service depends on the return Base model defined. You can override this model by modifying [base_response.dart](./lib/services/rest_api/models/base_response.dart). Also server error will also be parsed to [model](./lib/services/rest_api/models/base_error.dart).
+
+### Generate Mock Test
+
+```
+flutter pub run build_runner build --delete-conflicting-outputs
+```
 
 ## Application Dependencies
 

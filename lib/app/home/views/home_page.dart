@@ -50,9 +50,9 @@ class HomePage extends PageStateless<HomeProvider> {
                         provider.checkConnection,
                         onStart: () async => showLoading(context, true),
                         onCompleted: () async => showLoading(context, false),
-                        onSuccess: (data) async => context.navigator.push(
-                          AppRoutes.instance.loginSuccess,
-                        ),
+                        // onSuccess: (data) async => context.navigator.push(
+                        //   AppRoutes.instance.loginSuccess,
+                        // ),
                       ),
                       child: Text(
                         LocaleKeys.home_call_api_success.tr(),
