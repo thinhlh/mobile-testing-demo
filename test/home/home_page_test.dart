@@ -52,7 +52,6 @@ void main() {
 
   group('Show correct initialize UI', () {
     testWidgets('Should show correct title when initialize', (tester) async {
-      when(homeProvider.title).thenReturn(LocaleKeys.general);
       await tester.pumpWidget(testableWidget);
 
       final titleFinder = find.text(LocaleKeys.general);
@@ -61,7 +60,6 @@ void main() {
     });
 
     testWidgets('Should show login success button', (tester) async {
-      when(homeProvider.title).thenReturn(LocaleKeys.general);
       await tester.pumpWidget(testableWidget);
 
       final loginSuccessFinder = find.widgetWithText(
@@ -73,7 +71,6 @@ void main() {
     });
 
     testWidgets('Should show login error button', (tester) async {
-      when(homeProvider.title).thenReturn(LocaleKeys.general);
       await tester.pumpWidget(testableWidget);
 
       final loginErrorFinder = find.widgetWithText(
@@ -85,7 +82,6 @@ void main() {
     });
 
     testWidgets('Should show change locale button', (tester) async {
-      when(homeProvider.title).thenReturn(LocaleKeys.general);
       await tester.pumpWidget(testableWidget);
 
       final changeLocaleFinder = find.widgetWithText(
@@ -97,7 +93,6 @@ void main() {
     });
 
     testWidgets('Should show crash app button', (tester) async {
-      when(homeProvider.title).thenReturn(LocaleKeys.general);
       await tester.pumpWidget(testableWidget);
 
       final crashAppFinder = find.widgetWithText(
@@ -120,6 +115,8 @@ void main() {
 
     expect(find.text(LocaleKeys.general), findsOneWidget);
 
+    // Act
+
     await tester.tap(
       find.widgetWithText(
         ElevatedButton,
@@ -128,6 +125,8 @@ void main() {
     );
 
     await tester.pump();
+
+    // Assert
 
     verify(homeService.checkConnection()).called(1);
     verifyNoMoreInteractions(homeService);
