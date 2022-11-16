@@ -36,6 +36,7 @@ class HomePage extends PageStateless<HomeProvider> {
                   selector: (_, provider) => provider.title,
                   builder: (_, value, child) => Text(
                     value,
+                    key: const ValueKey(LocaleKeys.general),
                     style: context.textTheme.titleLarge,
                   ),
                 ),
