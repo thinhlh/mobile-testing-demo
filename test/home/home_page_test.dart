@@ -56,7 +56,7 @@ void main() {
 
       final titleFinder = find.text(LocaleKeys.general);
 
-      expect(titleFinder, findsWidgets);
+      expect(titleFinder, findsNWidgets(2));
     });
 
     testWidgets('Should show login success button', (tester) async {
